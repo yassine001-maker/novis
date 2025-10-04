@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FloussiTrack — Suivi de Budget avec Google Sheets</title>
+  <meta name="description" content="FloussiTrack — Modèles Google Sheets pour gérer budget, dépenses, factures et objectifs d’épargne.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #f9f6f1;          /* beige creamy background */
+      --card: #ffffff;        /* white card */
+      --border: #e0dcd3;      /* soft border */
+      --accent: #5c7d63;      /* muted green */
+      --accent-light: #dbe5dd;/* light green tint */
+      --text: #2a2a2a;        /* dark text */
+      --muted: #6f6f6f;       /* muted text */
+    }
+    *{box-sizing:border-box;}
+    body {
+      margin:0;
+      font-family:'Inter',sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing:antialiased;
+    }
+    .container {max-width:1000px;margin:auto;padding:24px;}
+
+    header {
+      display:flex;align-items:center;justify-content:space-between;
+      padding:14px 0;
+    }
+    .brand {display:flex;align-items:center;gap:10px;}
+    .logo {
+      width:48px;height:48px;border-radius:12px;
+      background: var(--accent);
+      display:flex;align-items:center;justify-content:center;
+      color:white;font-weight:700;font-size:18px;
+    }
+    h1 {font-size:20px;margin:0;color:var(--accent);}
+    nav {display:flex;gap:12px;}
+    .btn {
+      padding:10px 16px;
+      border-radius:8px;
+      border:1px solid var(--border);
+      background: white;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.2s;
+    }
+    .btn:hover {background: var(--accent-light);}
+    .btn.primary {
+      background: var(--accent);color:white;border:none;
+    }
+
+    .hero {
+      display:grid;grid-template-columns:1fr 400px;gap:30px;align-items:center;
+      margin-top:40px;
+    }
+    .headline {
+      font-size:38px;font-weight:800;margin:0 0 16px;
+      color: var(--text);
+    }
+    .sub {
+      color:var(--muted);margin-bottom:20px;line-height:1.5;
+    }
+    .card {
+      background: var(--card);
+      border:1px solid var(--border);
+      padding:20px;border-radius:14px;
+    }
+
+    .features {
+      display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px;
+    }
+    .feature {
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;padding:14px;
+    }
+    .feature h4 {margin:0 0 6px;color:var(--accent);}
+    .feature p {margin:0;font-size:14px;color:var(--muted)}
+
+    .pricing {
+      margin-top:40px;
+      display:grid;grid-template-columns:repeat(2,1fr);gap:20px;
+    }
+    .price-card {
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;padding:22px;
+    }
+    .price-card h3 {margin:0 0 10px;font-size:20px;color:var(--accent);}
+    .price {font-size:28px;font-weight:800;margin:6px 0;color:var(--text);}
+    .price small{color:var(--muted);font-size:14px;}
+
+    footer {
+      margin-top:50px;padding-top:20px;
+      border-top:1px solid var(--border);
+      text-align:center;
+      font-size:13px;color:var(--muted);
+    }
+
+    @media(max-width:800px){
+      .hero{grid-template-columns:1fr;}
+      .pricing{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <div class="brand">
+        <div class="logo">FT</div>
+        <h1>FloussiTrack</h1>
+      </div>
+      <nav>
+        <a href="#pricing" class="btn">Nos Tarifs</a>
+        <button class="btn primary" id="use-template">Acheter</button>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div>
+        <h2 class="headline">Suivez vos <span style="color:var(--accent)">dépenses et objectifs</span> facilement</h2>
+        <p class="sub">FloussiTrack vous propose des <strong>Google Sheets prêts à l’emploi</strong> pour gérer votre budget, vos dépenses, vos factures et vos objectifs d’épargne. Simple, clair et accessible.</p>
+        <button class="btn primary" id="cta">Commencer maintenant</button>
+
+        <div class="features">
+          <div class="feature">
+            <h4>📊 Budget clair</h4>
+            <p>Suivez chaque dépense et visualisez vos finances.</p>
+          </div>
+          <div class="feature">
+            <h4>💸 Factures & charges</h4>
+            <p>Notez vos factures mensuelles et gardez le contrôle.</p>
+          </div>
+          <div class="feature">
+            <h4>🎯 Objectifs d’épargne</h4>
+            <p>Fixez vos buts et suivez vos progrès.</p>
+          </div>
+          <div class="feature">
+            <h4>✅ Simple</h4>
+            <p>Une feuille Google Sheets, rien de compliqué.</p>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div class="card">
+          <h3 style="margin:0;color:var(--accent)">Exemple de suivi</h3>
+          <p class="sub">Un aperçu clair de vos revenus, dépenses et économies.</p>
+          <img src="C:\Users\ADMIN\Downloads\il_1588xN.6312164436_t0yy (1).webp" style="width:100%;border-radius:10px;border:1px solid var(--border)">
+        </div>
+      </aside>
+    </section>
+
+    <section id="pricing" class="pricing">
+      <div class="price-card">
+        <h3>Feuille Simple</h3>
+        <div class="price">29 MAD <small>paiement unique</small></div>
+        <p class="sub">Un modèle Google Sheets prêt pour suivre vos dépenses et factures.</p>
+        <button class="btn primary">Acheter maintenant</button>
+      </div>
+
+      <div class="price-card">
+        <h3>Pack Annuel + Mensuel</h3>
+        <div class="price">39 MAD <small>paiement unique</small></div>
+        <p class="sub">Deux feuilles (Mensuelle & Annuelle) pour un suivi complet et simple.</p>
+        <button class="btn primary">Obtenir le pack</button>
+      </div>
+    </section>
+
+    <footer>
+      © FloussiTrack — Google Sheets pour votre budget • Fait avec ❤️ au Maroc
+    </footer>
+
+  </div>
+
+  <script>
+    // Replace with your real Google Sheet link
+    const TEMPLATE_LINK = "Personalize with your name: Add your name below the currency								";
+    document.getElementById('use-template').onclick = () => window.open(TEMPLATE_LINK,'_blank');
+    document.getElementById('cta').onclick = () => window.open(TEMPLATE_LINK,'_blank');
+  </script>
+</body>
+</html>
